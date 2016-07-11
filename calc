@@ -1,0 +1,666 @@
+# credit_calcul
+package calc; /*	указываетпакет "pack", в котором находится файл класса
+Пакет (package) — это некий контейнер, который используется для того, чтобы изолировать имена классов.
+ */
+import javax.swing.*; 
+/*	Импортируем:
+javax.* — стандартные расширения
+(Стандартные расширения (standard extensions) — это наборы пакетов Java)
+Swing Библиотека графического интерфейса (конкретный пакет),
+"*"-включение всех элементов библиотеки Swing (jbutton,jpanel,jlabel и т.д.)
+(точка) используется для выделения элементов из ссылки на объект.
+"Звездочка" в конце javax.swing.* означает "включить все методы" */
+public class calcul extends javax.swing.JFrame { 
+/*	(Public) модификатор доступа, который позволяет управлять видимостью любого метода и любой переменной.
+В данном случае модификатор доступа public означает, что класс calcul виден и доступен любому классу.
+В этой строке использовано зарезервированное слово class.
+Оно говорит транслятору, что собираемся описать новый класс calcul.
+Описываем calcul как класс,доступный другим классам (public)
+Класс на следует функции элемента JFrame, который определён в стандартной библиотеке calcul. 
+Этот самый JFrame уже содержит в себе всё необходимое для создания и функционирования
+окна программы - нам остаётся только использовать его методы в своей программе. */
+	
+	public calcul() {  /*Описание метода calcul
+	метод видим и доступен для других классов (public)
+	круглые скобки говорят о том что мы описываем метод и перед ними идет его название
+	Внутри скобок можно указать данные (аргумерты или параметры), которые передаются методу */
+   
+		// Создание объектов графического интерфейса формы
+		/* панель содержит поля в которые следует ввести данные необходимые для расчета кредита
+		= new JPanel():  "=" - оператор присваивания переменной jPanel1,jPanel2  функций класса JPanel.
+		Оператор new создает экземпляр указанного класса
+		JPanel() - класс. Является компонентом-контейнером для содержания других частей интерфейса.*/	
+        jPanel1 = new javax.swing.JPanel(); //jPanel1
+        jPanel2 = new javax.swing.JPanel(); //jPanel2
+        
+        /* JTextField (текстовое поле) — позволяет пользователю вводить данные. 
+         * Оператор new создает экземпляр указанного класса */
+        creditsum = new javax.swing.JTextField(); // сумма кредита
+        payment = new javax.swing.JTextField(); //ежемесячный платеж
+        totalsum = new javax.swing.JTextField(); //сумма кредита
+        percent = new javax.swing.JTextField(); //процентная ставка 
+        
+        creditperiod = new javax.swing.JComboBox(); /* JComboBox - элемент (виджет) графического интерфейса пользователя. 
+        Сочетание выпадающего списка (раскрывающегося при щелчке мыши). Позволяет выбрать период кредитования
+        Оператор new создает экземпляр указанного класса */
+        
+        /*JLabel (метка) — предназначен для описания (текстового или графического) элементов. 
+        Оператор new создает экземпляр указанного класса */
+        jLabel1 = new javax.swing.JLabel(); // cумма кредита
+        jLabel2 = new javax.swing.JLabel(); //cрок кредитования
+        jLabel3 = new javax.swing.JLabel(); // мес.
+        jLabel4 = new javax.swing.JLabel(); //процентная ставка
+        jLabel6 = new javax.swing.JLabel(); //%
+        jLabel7 = new javax.swing.JLabel(); //cумма кредита
+        jLabel5 = new javax.swing.JLabel(); //ежемесячный платеж
+        
+        /* JButton (кнопка) — основной активный компонент, позволяющий 
+        выполнить какие-либо действия при ее нажатии.*/
+        clearall = new javax.swing.JButton(); /* очистить все.
+    	= new JButton():  "=" - оператор присваивания переменной  clearall функций класса JButton.
+    	Оператор new создает экземпляр указанного класса. В скобках указана надпись содержащаяся на кнопке.*/
+        calculate = new javax.swing.JButton(); /*рассчитать. 
+        = new JButton():  "=" - оператор присваивания переменной  calculate функций класса JButton.
+    	Оператор new создает экземпляр указанного класса. В скобках указана надпись содержащаяся на кнопке.*/ 
+        clearresult = new javax.swing.JButton(); /*очистить результат. 
+        = new JButton():  "=" - оператор присваивания переменной  clearresult функций класса JButton.
+        Оператор new создает экземпляр указанного класса. В скобках указана надпись содержащаяся на кнопке.*/
+        
+        setTitle("Кредитный калькулятор"); //заголовок окна приложения. Метод setTitle() позволяет изменить текст в строке заголовка.
+        setResizable(false); // метод  setResizable говорим о том, что пользователь не имеет права изменять размеры фрейма
+        
+        // задание параметров для компонентов  jLabel и ComboBox
+        creditperiod.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "4", "6", "12", "24", "36", "48", "60" })); /*JComboBox - это компонент Java Swing, 
+        который представляет собой выпадающий список. Оператор new создает экземпляр указанного класса.
+        метод setModel принимает экземпляр класса DefaultComboBoxModel. Вы должны использовать этот метод для создания данных в JComboBox. */
+        jLabel1.setText("Сумма кредита:"); /* setText означает написать текст в текстовое поле. Между кавычками ничего нет, 
+        значит текстовое поле будет пустым для jLabel1*/  
+        jLabel2.setText("Срок кредитования:"); /* setText означает написать текст в текстовое поле. Между кавычками ничего нет, 
+        значит текстовое поле будет пустым для  jLabel2*/  
+        jLabel3.setText("мес."); /* setText означает написать текст в текстовое поле. Между кавычками ничего нет, 
+        значит текстовое поле будет пустым для  jLabel3*/  
+        jLabel4.setText("Процентная ставка:");/* setText означает написать текст в текстовое поле. Между кавычками ничего нет, 
+        значит текстовое поле будет пустым для  jLabel4*/  
+        jLabel6.setText("%");/* setText означает написать текст в текстовое поле. Между кавычками ничего нет, 
+        значит текстовое поле будет пустым*/  
+        clearall.setText("Очистить всё"); /* setText означает написать текст в текстовое поле. Между кавычками ничего нет, 
+        значит текстовое поле будет пустым для clearall*/  
+        //очистить все введенные данные и результат рассчета
+        clearall.addActionListener(new java.awt.event.ActionListener() { /*  clearall - кнопка "очистить результат"
+    		"."  - указывает к какой переменной (кнопке) следует применить слушателя.
+    		addActionListener - добавление слушателя ActionListener к кнопке
+    		new - Оператор new создает экземпляр указанного класса
+    		(Для того чтобы кнопки стали функциональными, каждой из них необходимо присвоить обработчик событий,
+    		который будет отвечать зареагирование на события.
+    		В нашем случае требуется идентифицировать событие нажатия кнопки – путем щелчка мышью.
+    		Поэтому будет использоваться интерфейс "ActionListener",
+    		предназначенный для обработки событий "ActionEvent".
+    		тело интерфейса указывается ниже после фигурной скобки "{"
+    		*/
+
+            public void actionPerformed(java.awt.event.ActionEvent evt) {/*ActionListener" имеет метод "actionPerformed" объекта "ActionEvent",
+        		который реализуется путем простого вызова обработчика событий ActionPerformed.
+        		Ключевое слово public означает, что метод actionPerformed() доступен для любого другого класса Java
+        		Ключевое слово void означает, что метод main() не возвращает данных в программу, которая его вызвала.
+        		*/
+
+                clearallActionPerformed(evt);/*ActionListener" имеет метод "actionPerformed" объекта "ActionEvent",
+        		который реализуется путем простого вызова обработчика событий ActionPerformed. */
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1); /*
+         * Оператор new создает экземпляр указанного класса.
+         * GroupLayout менеджер имеет возможность независимо устанавливать горизонтальное и вертикальное расположение компонентов на форме.
+         * размещение компонентов на jPanel1
+         */
+        jPanel1.setLayout(jPanel1Layout); /*Метод setLayout - Вызов менеджера компоновки, который 
+        задает определенный порядок панелей в контейнере. */
+        jPanel1Layout.setHorizontalGroup( //метод setHorizontalGroup располагает компоненты вдоль горизонтальной оси
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /* метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием.
+            ParallelGroup выравнивание вдоль вертикальной оси.
+            GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.
+            alignment - выравнивание для элементов группы */ 
+            .addGroup(jPanel1Layout.createSequentialGroup() /*addgroup добавляют группу jPanel1Layout в систему. 
+            createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                .addContainerGap() /* addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+                Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера */
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /*addgroup добавляют группу jPanel1Layout в систему.
+                метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                alignment - выравнивание для элементов группы
+            	GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+                    .addComponent(jLabel1) //добавить компонент jlabel1
+                    .addComponent(clearall)//добавить компонент clearall
+                    .addComponent(creditsum, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)) /*
+                    addComponent - добавление компонента с указанными параметрами.
+                    creditsum - добавляет компонент creditsum с указанным размером     .           
+					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					PREFERRED_SIZE - предпочтительный размер.
+					133 пикселя - pref - привилегированный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                UNRELATED - Перечислимая величина, указывающая на два компонента, визуально не связанных */
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                    	GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+                    .addComponent(jLabel2)//добавить компонент jlabel2
+                    .addGroup(jPanel1Layout.createSequentialGroup()  /*addgroup добавляют группу jPanel1Layout в систему. 
+                    createSequentialGroup располагает и измеряет элементы последовательно, один за другим. */
+                        .addComponent(creditperiod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE) /*
+                        addComponent - добавление компонента с указанными параметрами.
+                        creditperiod - добавляет компонент creditperiod с указанным размером     .           
+    					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+    					PREFERRED_SIZE - предпочтительный размер.
+    					javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+    					DEFAULT_SIZE - размер по умолчанию.
+    					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                        Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                        Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                        ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                        RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных */
+                        .addComponent(jLabel3)) // добавление компонента jlabel3
+                    .addComponent(jLabel4)//добавление компонента jlabel4
+                    .addGroup(jPanel1Layout.createSequentialGroup() /*addgroup добавляют группу jPanel1Layout в систему. 
+                            createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                    	.addComponent(percent, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE) /*
+                        addComponent - добавление компонента с указанными параметрами.
+                        percent - добавляет компонент percent с указанным размером.           
+    					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+    					PREFERRED_SIZE - предпочтительный размер.
+    					32 - pref - привилегированный размер.
+    					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                        Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                        Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                        ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                        RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных */
+                        .addComponent(jLabel6))) //добавить компонент jlabel6
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)) /* 
+                addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+            	Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера 
+            	javax.swing.GroupLayout.DEFAULT_SIZE -  привилегированный разме
+            	Short.MAX_VALUE - максимальный размер, где объект типа Short содержит единственное поле, тип которого short.
+            	MAX_VALUE - постоянное максимальное значение*/
+        );
+        jPanel1Layout.setVerticalGroup( //метод setVerticalGroup располагает компоненты вдоль вертикальной оси
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /* метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием.
+            ParallelGroup выравнивание вдоль вертикальной оси.
+            GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по вертикале.
+            alignment - выравнивание для элементов группы */ 
+            .addGroup(jPanel1Layout.createSequentialGroup() /*addgroup добавляют группу jPanel1Layout в систему. 
+                    createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                .addGap(13, 13, 13) /*Добавляет разрыв к этому Group с указанным размером, где
+                13 - min - минимальный размер разрыва
+                13 - pref - привилегированный размер разрыва
+                13 - max - максимальный размер разрыва*/
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE) /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                    	GroupLayout.Alignment.BASELINE соответствует выравниванию вдоль базовой линии.*/
+                    .addComponent(jLabel1) //добавить компонент jlabel1
+                    .addComponent(jLabel2)) //добавить компонент jlabel2
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных */
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE) /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                    	GroupLayout.Alignment.BASELINE соответствует выравниванию вдоль базовой линии.*/
+                    .addComponent(creditsum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE) /*
+                    addComponent - добавление компонента с указанными параметрами.
+                    creditsum - добавляет компонент creditsum с указанным размером     .           
+					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					PREFERRED_SIZE - предпочтительный размер.
+					javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					DEFAULT_SIZE - размер по умолчанию.
+					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                    .addComponent(creditperiod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE) /*
+                    addComponent - добавление компонента с указанными параметрами.
+                   	creditperiod - добавляет компонент creditperiod с указанным размером     .           
+					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					PREFERRED_SIZE - предпочтительный размер.
+					javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					DEFAULT_SIZE - размер по умолчанию.
+					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                    .addComponent(jLabel3)) //добавить компонент jlabel3
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                    	GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+                    .addComponent(jLabel2)//добавить компонент jlabel2
+                    .addGroup(jPanel1Layout.createSequentialGroup()  /*addgroup добавляют группу jPanel1Layout в систему. 
+                            createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                        Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                        Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                        ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                        RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных */
+                        .addComponent(jLabel4) //добавить компонент jlabel4
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                        Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                        Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                        ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                        RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных */
+                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE) /*addgroup добавляют группу jPanel1Layout в систему.
+                          метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                          alignment - выравнивание для элементов группы
+                      	  GroupLayout.Alignment.BASELINE соответствует выравниванию вдоль базовой линии.*/
+                            .addComponent(percent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE) /*
+                            addComponent - добавление компонента с указанными параметрами.
+                           	percent - добавляет компонент percent с указанным размером     .           
+        					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+        					PREFERRED_SIZE - предпочтительный размер.
+        					javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+        					DEFAULT_SIZE - размер по умолчанию.
+        					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                            .addComponent(jLabel6))) //добавляет компонент label6
+                    .addGroup(jPanel1Layout.createSequentialGroup() /*addgroup добавляют группу jPanel1Layout в систему. 
+                            createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                        .addGap(18, 18, 18) /*Добавляет разрыв к этому Group с указанным размером, где
+                        18 - min - минимальный размер разрыва
+                        18 - pref - привилегированный размер разрыва
+                        18 - max - максимальный размер разрыва*/
+                        .addComponent(clearall, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))) /*
+                		addComponent - добавление компонента с указанными параметрами.
+               			clearall - добавляет компонент clearall с указанным размером     .           
+						javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+						PREFERRED_SIZE  - предпочтительный размер.
+						30 - pref - привилегированный размер
+						javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)) /* 
+            addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+        	Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера 
+        	javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер
+        	DEFAULT_SIZE - размер по умолчанию.
+        	Short.MAX_VALUE - максимальный размер, где объект типа Short содержит единственное поле, тип которого short.
+        	MAX_VALUE - постоянное максимальное значение*/
+        );
+
+        jLabel5.setText("Ежемесячный платеж:"); //Метод setText устанавливет текст кнопки jLabel5 "Ежемесячный платеж:"
+        calculate.setText("Рассчитать"); //Метод setText устанавливет текст кнопки calculate "Рассчитать"
+        calculate.addActionListener(new java.awt.event.ActionListener() { /*Метод addActionListener добавляет обработчик к кнопке calculate.
+         /* calculate - кнопка "Рассчитать"
+		"." - указывает к какой переменной (кнопке) следует применить слушателя.
+		addActionListener - добавление слушателя ActionListener к кнопке
+		new - Оператор new создает экземпляр указанного класса
+		(Для того чтобы кнопки стали функциональными, каждой из них необходимо присвоить обработчик событий,
+		который будет отвечать за реагирование на события.
+		В нашем случае требуется идентифицировать событие нажатия кнопки – путем щелчка мышью.
+		Поэтому будет использоваться интерфейс "ActionListener",
+		предназначенный для обработки событий "ActionEvent".
+		тело интерфейса указывается ниже после фигурной скобки "{"
+*/
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            /* ActionListener" имеет метод "actionPerformed" объекта "ActionEvent",
+            который реализуется путем простого вызова обработчика событий ActionPerformed.
+            Ключевое слово public означает, что метод actionPerformed() доступен для любого другого класса Java
+            Ключевое слово void означает, что метод main() не возвращает данных в программу, которая его вызвала.
+            */
+            {
+            	if ((isValidInput(percent, "процент")) &&
+            			(isValidInput(creditsum, "сумму кредита")));
+            	/* if - оператор если. * isValidInput проверяет данные на правильность, т.е.
+				если в текстовые поля percent и creditsum введены буквы или символы.
+				Если введены некорректные данные, то выдает ошибку */
+            	calculateActionPerformed(evt); // вызов обработчика события при нажатие кнопки
+            }
+        });
+ 		totalsum.setEditable(false); //метод setEditable - недоступен для редактирования
+        jLabel7.setText("Сумма выплаты:"); //Метод setText устанавливет текст кнопки jLabel7 "Сумма выплаты:"
+        clearresult.setText("Очистить результат");//Метод setText устанавливет текст кнопки clearresult "Очистить результат"
+        clearresult.addActionListener(new java.awt.event.ActionListener() /*Метод addActionListener добавляет обработчик к кнопке calculate.
+            /* calculate - кнопка "Рассчитать"
+       		"." - указывает к какой переменной (кнопке) следует применить слушателя.
+       		addActionListener - добавление слушателя ActionListener к кнопке
+       		new - Оператор new создает экземпляр указанного класса
+       		(Для того чтобы кнопки стали функциональными, каждой из них необходимо присвоить обработчик событий,
+       		который будет отвечать за реагирование на события.
+       		В нашем случае требуется идентифицировать событие нажатия кнопки – путем щелчка мышью.
+       		Поэтому будет использоваться интерфейс "ActionListener",
+       		предназначенный для обработки событий "ActionEvent".
+       		тело интерфейса указывается ниже после фигурной скобки "{" */
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt) 
+            /* ActionListener" имеет метод "actionPerformed" объекта "ActionEvent",
+            который реализуется путем простого вызова обработчика событий ActionPerformed.
+            Ключевое слово public означает, что метод actionPerformed() доступен для любого другого класса Java
+            Ключевое слово void означает, что метод main() не возвращает данных в программу, которая его вызвала.
+            */
+            {
+                clearresultActionPerformed(evt); // вызов обработчика события при нажатие кнопки
+            }
+        });
+/* Создание объекта GroupLayout
+ * GroupLayout менеджер имеет возможность независимо устанавливать горизонтальное и вертикальное расположение компонентов на форме.
+* размещение компонентов на панели */
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);/*
+         * Оператор new создает экземпляр указанного класса jPanel2Layout.
+         * GroupLayout менеджер имеет возможность независимо устанавливать горизонтальное и вертикальное расположение компонентов на форме.
+         * размещение компонентов на jPanel2
+         */
+        jPanel2.setLayout(jPanel2Layout); /*Метод setLayout - Вызов менеджера компоновки, который 
+        задает определенный порядок панелей в контейнере. */
+        jPanel2Layout.setHorizontalGroup(  //метод setHorizontalGroup располагает компоненты вдоль горизонтальной оси
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /* метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием.
+            ParallelGroup выравнивание вдоль вертикальной оси.
+            GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.
+            alignment - выравнивание для элементов группы */ 
+            .addGroup(jPanel2Layout.createSequentialGroup() /*addgroup добавляют группу jPanel1Layout в систему. 
+                    createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                .addContainerGap() /* addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+                Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера */
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /*addgroup добавляют группу jPanel1Layout в систему.
+                метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                alignment - выравнивание для элементов группы
+                GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE) /*
+                    addComponent - добавление компонента с указанными параметрами.
+                   	jLabel5 - добавляет компонент jLabel5 с указанным размером     .           
+					javax.swing.GroupLayout.DEFAULT_SIZE - min - минимальный размер.
+					DEFAULT_SIZE - размер по умолчанию.
+					javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					Short.MAX_VALUE - max - максимальный размер, где объект типа Short содержит единственное поле, тип которого short.
+        			MAX_VALUE - постоянное максимальное значение*/
+                    .addComponent(payment)//добавить компонент payment
+                    .addComponent(jLabel7) //добавить компонент jlabel7
+                    .addComponent(totalsum))//добавить компонент totalsum
+                .addGap(31, 31, 31) /*Добавляет разрыв к этому Group с указанным размером, где
+                31 - min - минимальный размер разрыва
+                31 - pref - привилегированный размер разрыва
+                31 - max - максимальный размер разрыва*/
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                        GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+                    .addComponent(clearresult) //добавить компонент clearresult
+                    .addComponent(calculate)) //добавить компонент calculate
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))  /* 
+            addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+        	Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера 
+        	javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер
+        	DEFAULT_SIZE - размер по умолчанию.
+        	Short.MAX_VALUE - max - максимальный размер, где объект типа Short содержит единственное поле, тип которого short.
+        	MAX_VALUE - постоянное максимальное значение*/
+        );
+        jPanel2Layout.setVerticalGroup(//метод setVerticalGroup располагает компоненты вдоль вертикальной оси
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /*
+            метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+            alignment - выравнивание для элементов группы
+            GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+            .addGroup(jPanel2Layout.createSequentialGroup()  /*addgroup добавляют группу jPanel1Layout в систему. 
+                    createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                .addGap(8, 8, 8) /*Добавляет разрыв к этому Group с указанным размером, где
+                8 - min - минимальный размер разрыва
+                8 - pref - привилегированный размер разрыва
+                8 - max - максимальный размер разрыва*/
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING) /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                        GroupLayout.Alignment.TRAILING соответствует выравниванию по правому краю в измерении по горизонтали.*/
+                    .addGroup(jPanel2Layout.createSequentialGroup()  /*addgroup добавляют группу jPanel1Layout в систему. 
+                            createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                        .addComponent(jLabel5) //добавить компонент jlabel5
+                        .addGap(7, 7, 7) /*Добавляет разрыв к этому Group с указанным размером, где
+                        7 - min - минимальный размер разрыва
+                        7 - pref - привилегированный размер разрыва
+                        7 - max - максимальный размер разрыва*/
+                        .addComponent(payment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)) /*
+            		addComponent - добавление компонента с указанными параметрами.
+           			payment - добавляет компонент payment с указанным размером.           
+					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер.
+					PREFERRED_SIZE  - предпочтительный размер.
+					javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер
+					DEFAULT_SIZE - размер по умолчанию
+					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер*/
+                    .addComponent(clearresult, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))/*
+        		addComponent - добавление компонента с указанными параметрами.
+       			payment - добавляет компонент payment с указанным размером.           
+				javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер.
+				PREFERRED_SIZE  - предпочтительный размер.
+				33 - pref - привилегированный размер
+				javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер*/
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING) /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                        GroupLayout.Alignment.TRAILING соответствует выравниванию по правому краю в измерении по горизонтали.*/
+                    .addGroup(jPanel2Layout.createSequentialGroup()  /*addgroup добавляют группу jPanel1Layout в систему. 
+                            createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                        .addGap(6, 6, 6) /*Добавляет разрыв к этому Group с указанным размером, где
+                        6 - min - минимальный размер разрыва
+                        6 - pref - привилегированный размер разрыва
+                        6 - max - максимальный размер разрыва*/
+                        .addComponent(jLabel7) //добавить компонент jlabel7
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE) /*
+                        Метод addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                        Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера,
+                        где Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                        ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                        RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных
+                        javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер
+                        Short.MAX_VALUE - max - максимальный размер разрыва*/
+                        .addComponent(totalsum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)) /*
+            		addComponent - добавление компонента с указанными параметрами.
+           			totalsumt - добавляет компонент totalsum с указанным размером.           
+					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер.
+					PREFERRED_SIZE  - предпочтительный размер.
+					javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер
+					DEFAULT_SIZE - размер по умолчанию
+					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер*/
+                    .addGroup(jPanel2Layout.createSequentialGroup() /*addgroup добавляют группу jPanel1Layout в систему. 
+                            createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE) /*
+                        Метод addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                        Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера,
+                        где Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                        ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                        RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных
+                        javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер
+                        Short.MAX_VALUE - max - максимальный размер разрыва*/
+                        .addComponent(calculate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))) /*
+        				addComponent - добавление компонента с указанными параметрами.
+       					calculate - добавляет компонент calculate с указанным размером.           
+						javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер.
+						PREFERRED_SIZE  - предпочтительный размер.
+						33 - pref - привилегированный размер
+						javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер*/
+                .addContainerGap()) /* addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+            Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера */
+        );
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane()); /*
+         * Оператор new создает экземпляр указанного класса.
+         * GroupLayout менеджер имеет возможность независимо устанавливать горизонтальное и вертикальное расположение компонентов на форме.
+         * размещение компонентов на getContentPane()
+         */
+        getContentPane().setLayout(layout); // Создает серию объектов-меток, которые должны быть отображены на панеле
+        layout.setHorizontalGroup(//метод setHorizontalGroup располагает компоненты вдоль горизонтальной оси
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /*
+            метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+            alignment - выравнивание для элементов группы
+            GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+            .addGroup(layout.createSequentialGroup()  /*addgroup добавляют группу jPanel1Layout в систему. 
+                    createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                .addContainerGap() /* addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+                Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера */
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)  /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                        GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)  /*
+            		addComponent - добавление компонента с указанными параметрами.
+           			jPanel1 - добавляет компонент jPanel1 с указанным размером.           
+    				javax.swing.GroupLayout.DEFAULT_SIZE - min - минимальный размер.
+    				DEFAULT_SIZE  - размер по умолчанию
+    				javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер
+    				Short.MAX_VALUE - max - максимальный размер
+    				MAX_VALUE - постоянное максимальное значение*/
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))  /*
+        		addComponent - добавление компонента с указанными параметрами.
+       			jPanel2 - добавляет компонент jPanel2 с указанным размером.           
+				javax.swing.GroupLayout.DEFAULT_SIZE - min - минимальный размер.
+				DEFAULT_SIZE  - размер по умолчанию
+				javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер
+				Short.MAX_VALUE - max - максимальный размер
+				MAX_VALUE - постоянное максимальное значение*/
+                .addContainerGap()) /* addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+            	Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера */
+        );
+        layout.setVerticalGroup( //метод setVerticalGroup располагает компоненты вдоль вертикальной оси
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)   /*
+            метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+            alignment - выравнивание для элементов группы
+            GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+            .addGroup(layout.createSequentialGroup()  /*addgroup добавляют группу jPanel1Layout в систему. 
+                    createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                .addContainerGap() /* addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+                Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера */
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE) /*
+        		addComponent - добавление компонента с указанными параметрами.
+       			jPanel1 - добавляет компонент jPanel1 с указанным размером.           
+				javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер.
+				PREFERRED_SIZE  - предпочтительный размер.
+				javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер
+				DEFAULT_SIZE - размер по умолчанию
+				javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер*/
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных */
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE) /*
+        		addComponent - добавление компонента с указанными параметрами.
+       			jPanel2 - добавляет компонент jPanel2 с указанным размером.           
+				javax.swing.GroupLayout.DEFAULT_SIZE - min - минимальный размер.
+				DEFAULT_SIZE - размер по умолчанию
+				javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер
+				DEFAULT_SIZE - размер по умолчанию
+				Short.MAX_VALUE - max - максимальный размер, где объект типа Short содержит единственное поле, тип которого short.
+        		MAX_VALUE - постоянное максимальное значение*/
+                .addContainerGap()) /* addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+            	Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера */
+        );
+pack(); /* Метод pack устанавливает такой минимальный размер контейнера, который достаточен для отображения всех компонентов */   
+    }           
+    private void calculateActionPerformed(java.awt.event.ActionEvent evt) {                                          
+  	 double x; // ежемесячный платёж, double - тип данных, где переменная x с плавающей точкой двойной разрядности
+   	 double s; // первичная сумма кредита, double - тип данных, где переменная s с плавающей точкой двойной разрядности
+   	 double p; // месячная ставка, double - тип данных, где переменная p c плавающей точкой двойной разрядности
+   	 double n; // количество месяцев, double - тип данных, где переменная n с плавающей точкой двойной разрядности
+   	 double ps; // годовая процентная ставка, double - тип данных, где переменная ps с плавающей точкой двойной разрядности
+   	 double intnum;
+   	 	s=Double.parseDouble(creditsum.getText()); //parseDouble - метод преобразования строки creditsum в тип Double
+    	ps=Double.parseDouble(percent.getText()); //parseDouble - метод преобразования строки percent в тип Double
+   	 	p=ps/100/12; // вычисление месячной ставки
+  	  n=Math.round(Double.parseDouble(String.valueOf(creditperiod.getSelectedItem()))); /* количество месяцев, parseDouble - метод преобразования строки percent в тип Double 
+  	  String.valueOf - метод возвращает строку из creditperiod выбранного пункта getSelectedItem*/
+  	  x=Math.rint(100*(s*(p+(p/((Math.pow(1+p, n))-1))))/100.0); // вычисление ежемесячеого платежа,rint() - возвращает ближайшее целое к аргументу
+	  payment.setText(Double.toString(x)); // ежемесячный платёж, присвоение payment значение х
+ 	  totalsum.setText(Double.toString(x*n)); // сумма выплаты по кредиту, присвоение totalsum значение x*n
+    }  
+    private void clearallActionPerformed(java.awt.event.ActionEvent evt) { /* Модификатор доступа private означает, что метод 
+    clearallActionPerformed виден и доступен не всем. 
+	void означает, что метод clearallActionPerformed не возвращает данных в программу, которая его вызвала,
+	а просто выводит на экран строку. */                                         
+creditsum.setText("");  // очистить результат
+percent.setText(""); // очистить результат
+creditperiod.setSelectedItem("4"); //устанавливает при очистке выбранный пункт
+payment.setText(""); // очистить результат
+totalsum.setText(""); // очистить результат
+    }    
+    private void clearresultActionPerformed(java.awt.event.ActionEvent evt) { /* Модификатор доступа private означает, что метод 
+    	clearresultActionPerformed виден и доступен не всем. 
+		void означает, что метод clearresultActionPerformed не возвращает данных в программу, которая его вызвала,
+		а просто выводит на экран строку. */                                            
+        payment.setText("");  // очистить результат
+        totalsum.setText("");  // очистить результат
+ }             
+   //основная функция
+/* Блок try catch для перехвата исключений
+* В данный блок записывается код, который может вызвать исключение
+*/
+    public static boolean isValidInput(JTextField jtxt, String description) { // текстовыеполя в которые пользователь вводит данные. public - Доступно для других классов
+
+    	JDialog D = new JDialog();
+    	//еслибыл введен какой-либо текст
+    	if (jtxt.getText().trim().length() > 0) { //проверка на ввод только целого числа
+    	            try { /*Для задания блока программного кода, который требуется защитить от исключений, используется ключевое слово try.
+    	   			 Сразу же после try-блока помещается блок catch, задающий тип исключения которое необходимо обрабатывать*/
+    	             int num = Integer.parseInt(jtxt.getText()); //попытка преобразовать текст в целое число
+    	                return true; //если всенормально - возвращаем true
+    	            } catch (NumberFormatException e) {
+    	            	//предупреждение - неверный формат числа
+    	                JOptionPane.showMessageDialog(D, "Вы должны ввести целое число!", "Ошибка", JOptionPane.WARNING_MESSAGE);
+    	                jtxt.requestFocus();
+    	                jtxt.setText("");
+		return false;} } else {// если пользователь не ввели никаких данных
+            //предупреждение, чтонужно ввести данные
+            JOptionPane.showMessageDialog(D, "Введите " + description, "Ошибка", JOptionPane.WARNING_MESSAGE);
+            //расположитькурсор в текстовоокне, чтобы пользователь еще раз ввел число
+            jtxt.requestFocus();
+            jtxt.selectAll();
+            //ошибка - возвращаем false
+            return false;
+        }
+    }
+    public static void main(String args[]) { /*  Модификатор доступа public означает, чтометод main(String[] args)виден и доступен любому классу. static означает, 
+    			что не нужно создавать экземпляр(копию) объекта Index в памяти, чтобы использовать этот метод.
+				С помощью static объявляются методы и переменные класса, используемые для работы с классом в целом.
+				Эти методы могут непосредственно работать только с локальными и статическими переменными.
+				void означает, что метод main(String[] args)не возвращает данных в программу, которая его вызвала,
+				а просто выводит на экран строку.
+				В методе main слова String[] args означают,что этот может получать массив объектов с типом String. */
+    	try { /*Для задания блока программного кода, который требуется защитить от исключений, используется ключевое слово try.
+			 Сразу же после try-блока помещается блок catch, задающий тип исключения которое необходимо обрабатывать*/
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName()); //установка текущего стиля от экземпляра LookAndFeelInfo
+                    break; //оператор break внутри цикла прекращает выполнение действия
+                }
+            }
+        } catch (ClassNotFoundException ex) { //Блок catch получает объект типа ClassNotFoundException ex,который содержит короткое описание возникшей проблемы
+        	ex.printStackTrace(); // метод printStackTrace() выведет последовательность вызовов,которая привела к возникновению исключения
+        } catch (InstantiationException ex) { //Блок catch получает объект типа InstantiationException ex,который содержит короткое описание возникшей проблемы
+        	ex.printStackTrace(); // метод printStackTrace() выведет последовательность вызовов,которая привела к возникновению исключения
+        } catch (IllegalAccessException ex) {//Блок catch получает объект типа IllegalAccessException ex,который содержит короткое описание возникшей проблемы
+        	ex.printStackTrace(); //метод printStackTrace() выведет последовательность вызовов,которая привела к возникновению исключения
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) { //Блок catch получает объект типа javax.swing.UnsupportedLookAndFeelException ex,который содержит короткое описание возникшей проблемы
+        	ex.printStackTrace(); //метод printStackTrace() выведет последовательность вызовов,которая привела к возникновению исключения
+        }
+        java.awt.EventQueue.invokeLater(new Runnable() { /* EventQueue независимый от платформы класс события очередей.
+        invokeLater - Причины runnable иметь run метод, призванный dispatch thread из the system EventQueue. 
+        Это произойдет после того, как все события на ожидании обрабатываются. */
+            public void run() { /*  Модификатор доступа public означает, чтометод main(String[] args)виден и доступен любому классу. static означает, 
+    			что не нужно создавать экземпляр(копию) объекта Index в памяти, чтобы использовать этот метод.
+				С помощью static объявляются методы и переменные класса, используемые для работы с классом в целом.
+				Эти методы могут непосредственно работать только с локальными и статическими переменными.
+				void означает, что метод run не возвращает данных в программу, которая его вызвала */
+                new calcul().setVisible(true); //метод setVisible управляет свойством видимости окна
+            }
+        });
+    }
+    // переменные - не изменяются   
+    // Объявление переменных для компонентов формы                 
+    private javax.swing.JButton calculate; //кнопка calculate
+    private javax.swing.JButton clearall; //кнопка clearall
+    private javax.swing.JButton clearresult; //кнопка clearresult
+    private javax.swing.JComboBox creditperiod; //выпадающий список creditperiod
+    private javax.swing.JTextField creditsum; // текстовое поле creditsum
+    private javax.swing.JLabel jLabel1; //надпись jLabel1
+    private javax.swing.JLabel jLabel2; //надпись jLabel2
+    private javax.swing.JLabel jLabel3; //надпись jLabel3
+    private javax.swing.JLabel jLabel4; //надпись jLabel4
+    private javax.swing.JLabel jLabel5; //надпись jLabel5
+    private javax.swing.JLabel jLabel6; //надпись jLabel6
+    private javax.swing.JLabel jLabel7; //надпись jLabel7
+    private javax.swing.JPanel jPanel1; //панель jPanel1
+    private javax.swing.JPanel jPanel2; //панель jPanel2
+    private javax.swing.JTextField payment; // текстовое поле payment
+    private javax.swing.JTextField percent; // текстовое поле percent
+    private javax.swing.JTextField totalsum; // текстовое поле totalsum
+}
