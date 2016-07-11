@@ -97,4 +97,188 @@ public class calcul extends javax.swing.JFrame {
     		предназначенный для обработки событий "ActionEvent".
     		тело интерфейса указывается ниже после фигурной скобки "{"
     		*/
+            public void actionPerformed(java.awt.event.ActionEvent evt) {/*ActionListener" имеет метод "actionPerformed" объекта "ActionEvent",
+        		который реализуется путем простого вызова обработчика событий ActionPerformed.
+        		Ключевое слово public означает, что метод actionPerformed() доступен для любого другого класса Java
+        		Ключевое слово void означает, что метод main() не возвращает данных в программу, которая его вызвала.
+        		*/
+
+                clearallActionPerformed(evt);/*ActionListener" имеет метод "actionPerformed" объекта "ActionEvent",
+        		который реализуется путем простого вызова обработчика событий ActionPerformed. */
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1); /*
+         * Оператор new создает экземпляр указанного класса.
+         * GroupLayout менеджер имеет возможность независимо устанавливать горизонтальное и вертикальное расположение компонентов на форме.
+         * размещение компонентов на jPanel1
+         */
+        jPanel1.setLayout(jPanel1Layout); /*Метод setLayout - Вызов менеджера компоновки, который 
+        задает определенный порядок панелей в контейнере. */
+        jPanel1Layout.setHorizontalGroup( //метод setHorizontalGroup располагает компоненты вдоль горизонтальной оси
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /* метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием.
+            ParallelGroup выравнивание вдоль вертикальной оси.
+            GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.
+            alignment - выравнивание для элементов группы */ 
+            .addGroup(jPanel1Layout.createSequentialGroup() /*addgroup добавляют группу jPanel1Layout в систему. 
+            createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                .addContainerGap() /* addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+                Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера */
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /*addgroup добавляют группу jPanel1Layout в систему.
+                метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                alignment - выравнивание для элементов группы
+            	GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+                    .addComponent(jLabel1) //добавить компонент jlabel1
+                    .addComponent(clearall)//добавить компонент clearall
+                    .addComponent(creditsum, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)) /*
+                    addComponent - добавление компонента с указанными параметрами.
+                    creditsum - добавляет компонент creditsum с указанным размером     .           
+					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					PREFERRED_SIZE - предпочтительный размер.
+					133 пикселя - pref - привилегированный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                UNRELATED - Перечислимая величина, указывающая на два компонента, визуально не связанных */
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                    	GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+                    .addComponent(jLabel2)//добавить компонент jlabel2
+                    .addGroup(jPanel1Layout.createSequentialGroup()  /*addgroup добавляют группу jPanel1Layout в систему. 
+                    createSequentialGroup располагает и измеряет элементы последовательно, один за другим. */
+                        .addComponent(creditperiod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE) /*
+                        addComponent - добавление компонента с указанными параметрами.
+                        creditperiod - добавляет компонент creditperiod с указанным размером     .           
+    					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+    					PREFERRED_SIZE - предпочтительный размер.
+    					javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+    					DEFAULT_SIZE - размер по умолчанию.
+    					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                        Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                        Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                        ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                        RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных */
+                        .addComponent(jLabel3)) // добавление компонента jlabel3
+                    .addComponent(jLabel4)//добавление компонента jlabel4
+                    .addGroup(jPanel1Layout.createSequentialGroup() /*addgroup добавляют группу jPanel1Layout в систему. 
+                            createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                    	.addComponent(percent, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE) /*
+                        addComponent - добавление компонента с указанными параметрами.
+                        percent - добавляет компонент percent с указанным размером.           
+    					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+    					PREFERRED_SIZE - предпочтительный размер.
+    					32 - pref - привилегированный размер.
+    					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                        Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                        Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                        ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                        RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных */
+                        .addComponent(jLabel6))) //добавить компонент jlabel6
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)) /* 
+                addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+            	Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера 
+            	javax.swing.GroupLayout.DEFAULT_SIZE -  привилегированный разме
+            	Short.MAX_VALUE - максимальный размер, где объект типа Short содержит единственное поле, тип которого short.
+            	MAX_VALUE - постоянное максимальное значение*/
+        );
+        jPanel1Layout.setVerticalGroup( //метод setVerticalGroup располагает компоненты вдоль вертикальной оси
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /* метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием.
+            ParallelGroup выравнивание вдоль вертикальной оси.
+            GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по вертикале.
+            alignment - выравнивание для элементов группы */ 
+            .addGroup(jPanel1Layout.createSequentialGroup() /*addgroup добавляют группу jPanel1Layout в систему. 
+                    createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                .addGap(13, 13, 13) /*Добавляет разрыв к этому Group с указанным размером, где
+                13 - min - минимальный размер разрыва
+                13 - pref - привилегированный размер разрыва
+                13 - max - максимальный размер разрыва*/
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE) /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                    	GroupLayout.Alignment.BASELINE соответствует выравниванию вдоль базовой линии.*/
+                    .addComponent(jLabel1) //добавить компонент jlabel1
+                    .addComponent(jLabel2)) //добавить компонент jlabel2
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных */
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE) /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                    	GroupLayout.Alignment.BASELINE соответствует выравниванию вдоль базовой линии.*/
+                    .addComponent(creditsum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE) /*
+                    addComponent - добавление компонента с указанными параметрами.
+                    creditsum - добавляет компонент creditsum с указанным размером     .           
+					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					PREFERRED_SIZE - предпочтительный размер.
+					javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					DEFAULT_SIZE - размер по умолчанию.
+					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                    .addComponent(creditperiod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE) /*
+                    addComponent - добавление компонента с указанными параметрами.
+                   	creditperiod - добавляет компонент creditperiod с указанным размером     .           
+					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					PREFERRED_SIZE - предпочтительный размер.
+					javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+					DEFAULT_SIZE - размер по умолчанию.
+					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                    .addComponent(jLabel3)) //добавить компонент jlabel3
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING) /*addgroup добавляют группу jPanel1Layout в систему.
+                        метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                        alignment - выравнивание для элементов группы
+                    	GroupLayout.Alignment.LEADING соответствует выравниванию по левому краю в измерении по горизонтали.*/
+                    .addComponent(jLabel2)//добавить компонент jlabel2
+                    .addGroup(jPanel1Layout.createSequentialGroup()  /*addgroup добавляют группу jPanel1Layout в систему. 
+                            createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                        Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                        Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                        ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                        RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных */
+                        .addComponent(jLabel4) //добавить компонент jlabel4
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED) /*addPreferredGap добавляет элемент, представляющий привилегированный разрыв между двумя компонентами. 
+                        Элемент, создаваемый, чтобы представить разрыв, не изменяемого размера.
+                        Класс LayoutStyle предоставляет информацию о том, как расположить компоненты.
+                        ComponentPlacement - это перечисление возможных способов, которыми два компонента могут быть помещены друг относительно друга.
+                        RELATED - Перечислимая величина, указывающая на два компонента, визуально связанных */
+                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE) /*addgroup добавляют группу jPanel1Layout в систему.
+                          метод createParallelGroup создает и возвращает ParallelGroup с указанным выравниванием. 
+                          alignment - выравнивание для элементов группы
+                      	  GroupLayout.Alignment.BASELINE соответствует выравниванию вдоль базовой линии.*/
+                            .addComponent(percent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE) /*
+                            addComponent - добавление компонента с указанными параметрами.
+                           	percent - добавляет компонент percent с указанным размером     .           
+        					javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+        					PREFERRED_SIZE - предпочтительный размер.
+        					javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+        					DEFAULT_SIZE - размер по умолчанию.
+        					javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                            .addComponent(jLabel6))) //добавляет компонент label6
+                    .addGroup(jPanel1Layout.createSequentialGroup() /*addgroup добавляют группу jPanel1Layout в систему. 
+                            createSequentialGroup располагает и измеряет его элементы последовательно, один за другим. */
+                        .addGap(18, 18, 18) /*Добавляет разрыв к этому Group с указанным размером, где
+                        18 - min - минимальный размер разрыва
+                        18 - pref - привилегированный размер разрыва
+                        18 - max - максимальный размер разрыва*/
+                        .addComponent(clearall, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))) /*
+                		addComponent - добавление компонента с указанными параметрами.
+               			clearall - добавляет компонент clearall с указанным размером     .           
+						javax.swing.GroupLayout.PREFERRED_SIZE - min - минимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE.
+						PREFERRED_SIZE  - предпочтительный размер.
+						30 - pref - привилегированный размер
+						javax.swing.GroupLayout.PREFERRED_SIZE - max - максимальный размер или один из DEFAULT_SIZE или PREFERRED_SIZE*/
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)) /* 
+            addContainerGap добавляет элемент, представляющий привилегированный разрыв между одним краем контейнера и следующим или предыдущим Component с указанным размером. 
+        	Это не имеет никакого эффекта, если следующий или предыдущий элемент не является a Component и не касается одного края родительского контейнера 
+        	javax.swing.GroupLayout.DEFAULT_SIZE - pref - привилегированный размер
+        	DEFAULT_SIZE - размер по умолчанию.
+        	Short.MAX_VALUE - максимальный размер, где объект типа Short содержит единственное поле, тип которого short.
+        	MAX_VALUE - постоянное максимальное значение*/
+        );
 
