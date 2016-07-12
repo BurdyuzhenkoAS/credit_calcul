@@ -544,3 +544,63 @@ public class calcul extends javax.swing.JFrame {
         );
 pack(); /* Метод pack устанавливает такой минимальный размер контейнера, который достаточен для отображения всех компонентов */   
     }           
+    private void calculateActionPerformed(java.awt.event.ActionEvent evt) {                                          
+  	 double x; // ежемесячный платёж, double - тип данных, где переменная x с плавающей точкой двойной разрядности
+   	 double s; // первичная сумма кредита, double - тип данных, где переменная s с плавающей точкой двойной разрядности
+   	 double p; // месячная ставка, double - тип данных, где переменная p c плавающей точкой двойной разрядности
+   	 double n; // количество месяцев, double - тип данных, где переменная n с плавающей точкой двойной разрядности
+   	 double ps; // годовая процентная ставка, double - тип данных, где переменная ps с плавающей точкой двойной разрядности
+   	 double intnum;
+   	 	s=Double.parseDouble(creditsum.getText()); //parseDouble - метод преобразования строки creditsum в тип Double
+    	ps=Double.parseDouble(percent.getText()); //parseDouble - метод преобразования строки percent в тип Double
+   	 	p=ps/100/12; // вычисление месячной ставки
+  	  n=Math.round(Double.parseDouble(String.valueOf(creditperiod.getSelectedItem()))); /* количество месяцев, parseDouble - метод преобразования строки percent в тип Double 
+  	  String.valueOf - метод возвращает строку из creditperiod выбранного пункта getSelectedItem*/
+  	  x=Math.rint(100*(s*(p+(p/((Math.pow(1+p, n))-1))))/100.0); // вычисление ежемесячеого платежа,rint() - возвращает ближайшее целое к аргументу
+	  payment.setText(Double.toString(x)); // ежемесячный платёж, присвоение payment значение х
+ 	  totalsum.setText(Double.toString(x*n)); // сумма выплаты по кредиту, присвоение totalsum значение x*n
+    }  
+    private void clearallActionPerformed(java.awt.event.ActionEvent evt) { /* Модификатор доступа private означает, что метод 
+    clearallActionPerformed виден и доступен не всем. 
+	void означает, что метод clearallActionPerformed не возвращает данных в программу, которая его вызвала,
+	а просто выводит на экран строку. */                                         
+creditsum.setText("");  // очистить результат
+percent.setText(""); // очистить результат
+creditperiod.setSelectedItem("4"); //устанавливает при очистке выбранный пункт
+payment.setText(""); // очистить результат
+totalsum.setText(""); // очистить результат
+    }    
+    private void clearresultActionPerformed(java.awt.event.ActionEvent evt) { /* Модификатор доступа private означает, что метод 
+    	clearresultActionPerformed виден и доступен не всем. 
+		void означает, что метод clearresultActionPerformed не возвращает данных в программу, которая его вызвала,
+		а просто выводит на экран строку. */                                            
+        payment.setText("");  // очистить результат
+        totalsum.setText("");  // очистить результат
+ }             
+   //основная функция
+/* Блок try catch для перехвата исключений
+* В данный блок записывается код, который может вызвать исключение
+*/
+    public static boolean isValidInput(JTextField jtxt, String description) { // текстовыеполя в которые пользователь вводит данные. public - Доступно для других классов
+
+    	JDialog D = new JDialog();
+    	//еслибыл введен какой-либо текст
+    	if (jtxt.getText().trim().length() > 0) { //проверка на ввод только целого числа
+    	            try { /*Для задания блока программного кода, который требуется защитить от исключений, используется ключевое слово try.
+    	   			 Сразу же после try-блока помещается блок catch, задающий тип исключения которое необходимо обрабатывать*/
+    	             int num = Integer.parseInt(jtxt.getText()); //попытка преобразовать текст в целое число
+    	                return true; //если всенормально - возвращаем true
+    	            } catch (NumberFormatException e) {
+    	            	//предупреждение - неверный формат числа
+    	                JOptionPane.showMessageDialog(D, "Вы должны ввести целое число!", "Ошибка", JOptionPane.WARNING_MESSAGE);
+    	                jtxt.requestFocus();
+    	                jtxt.setText("");
+		return false;} } else {// если пользователь не ввели никаких данных
+            //предупреждение, чтонужно ввести данные
+            JOptionPane.showMessageDialog(D, "Введите " + description, "Ошибка", JOptionPane.WARNING_MESSAGE);
+            //расположитькурсор в текстовоокне, чтобы пользователь еще раз ввел число
+            jtxt.requestFocus();
+            jtxt.selectAll();
+            //ошибка - возвращаем false
+            return false;
+        }
