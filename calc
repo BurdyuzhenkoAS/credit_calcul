@@ -641,3 +641,26 @@ totalsum.setText(""); // очистить результат
             }
         });
     }
+/*Объявление переменных для компонентов формы      
+javax.* — стандартные расширения
+(Стандартные расширения (standard extensions) — это наборы пакетов Java)
+Swing Библиотека графического интерфейса (конкретный пакет),
+ (точка) используется для выделения элементов из ссылки на объект.*/
+    private javax.swing.JButton calculate; //кнопка calculate
+    private javax.swing.JButton clearall; //кнопка clearall
+    private javax.swing.JButton clearresult; //кнопка clearresult
+    private javax.swing.JComboBox creditperiod; //выпадающий список creditperiod
+    private javax.swing.JTextField creditsum; // текстовое поле creditsum
+    private javax.swing.JLabel jLabel1; //надпись jLabel1
+    private javax.swing.JLabel jLabel2; //надпись jLabel2
+    private javax.swing.JLabel jLabel3; //надпись jLabel3
+    private javax.swing.JLabel jLabel4; //надпись jLabel4
+    private javax.swing.JLabel jLabel5; //надпись jLabel5
+    private javax.swing.JLabel jLabel6; //надпись jLabel6
+    private javax.swing.JLabel jLabel7; //надпись jLabel7
+    private javax.swing.JPanel jPanel1; //панель jPanel1
+    private javax.swing.JPanel jPanel2; //панель jPanel2
+    private javax.swing.JTextField payment; // текстовое поле payment
+    private javax.swing.JTextField percent; // текстовое поле percent
+    private javax.swing.JTextField totalsum; // текстовое поле totalsum
+}
